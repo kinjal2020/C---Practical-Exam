@@ -5,6 +5,8 @@ void addRecord();
 void displayRecord();
 void searchEmployees();
 void updateEmployees();
+void deleteRecord();
+void calculateSalary();
 
 struct Employee
 {
@@ -53,9 +55,11 @@ int main()
             break;
 
         case 'e':
+            deleteRecord();
             break;
 
         case 'f':
+            calculateSalary();
             break;
 
         case 'g':
@@ -74,11 +78,26 @@ int main()
     return 0;
 }
 
+void calculateSalary()
+{
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        sum = sum + emp[i].emp_salary;
+    }
+    printf("Total salary of employee:%d", sum);
+}
+
 void deleteRecord()
 {
     int index;
-    printf("Enter index of employee to update\n");
+    printf("Enter index of employee to delete\n");
     scanf("%d", &index);
+    for (int i = index; i < n; i++)
+    {
+        emp[i] = emp[i + 1];
+    }
+    n = n - 1;
 }
 
 void updateEmployees()
